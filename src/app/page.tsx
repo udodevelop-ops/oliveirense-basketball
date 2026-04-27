@@ -22,53 +22,82 @@ export default async function Home() {
 
   return (
     <div>
-      {/* HERO */}
-      <section className="relative min-h-[540px] flex flex-col justify-center px-6 py-24 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #141416 0%, #1a1a1f 40%, #1C1C20 60%, #141416 100%)" }}>
-        {/* Decorative elements */}
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 65% 40%, rgba(28,58,107,0.18) 0%, transparent 65%)" }} />
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 15% 75%, rgba(200,16,46,0.1) 0%, transparent 55%)" }} />
-        {/* Subtle grid */}
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+      {/* ═══ HERO ═══ */}
+      <section className="relative overflow-hidden" style={{ minHeight: 560, background: "#141416" }}>
 
-        <div className="relative max-w-7xl mx-auto w-full">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2.5 mb-6 px-4 py-2 rounded-full border text-[11px] font-bold tracking-[2.5px] uppercase"
-            style={{ borderColor: "rgba(28,58,107,0.5)", color: "#6B8FCC", background: "rgba(28,58,107,0.1)" }}>
-            <Image src="/logo.png" alt="" width={18} height={18} className="object-contain" />
-            Temporada {get("season")}
+        {/* Faixa vermelha diagonal no fundo */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute"
+            style={{
+              right: "-5%", top: 0, bottom: 0, width: "52%",
+              background: "linear-gradient(175deg, #C8102E 0%, #8B0A1F 100%)",
+              clipPath: "polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%)"
+            }} />
+          {/* Textura subtil sobre o vermelho */}
+          <div className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage: "repeating-linear-gradient(45deg, #fff 0px, #fff 1px, transparent 1px, transparent 8px)",
+              right: "-5%", left: "45%"
+            }} />
+        </div>
+
+        {/* Conteúdo */}
+        <div className="relative max-w-7xl mx-auto px-6 flex items-center" style={{ minHeight: 560 }}>
+
+          {/* Esquerda — texto */}
+          <div className="flex-1 py-16 pr-8 z-10">
+            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-[2px] uppercase"
+              style={{ background: "rgba(200,16,46,0.15)", color: "#ff6b6b", border: "1px solid rgba(200,16,46,0.3)" }}>
+              ● Temporada {get("season") || "2025/26"}
+            </div>
+
+            <h1 className="font-display text-white leading-[0.9] mb-6"
+              style={{ fontSize: "clamp(52px, 7vw, 80px)", letterSpacing: "2px" }}>
+              UNIDOS PELA<br />
+              <span style={{ color: "#C8102E", WebkitTextStroke: "1px #ff4444" }}>BOLA</span>
+            </h1>
+
+            <p className="text-gray-400 text-base leading-relaxed mb-8 max-w-sm">
+              Oliveirense Basquetebol — paixão, dedicação e espírito de equipa em cada jogo.
+            </p>
+
+            <div className="flex gap-3 flex-wrap">
+              <Link href="/plantel"
+                className="px-7 py-3.5 rounded-lg text-sm font-bold text-white tracking-wide transition-all hover:brightness-110"
+                style={{ background: "linear-gradient(135deg, #C8102E, #8B0A1F)" }}>
+                Ver Plantel
+              </Link>
+              <Link href="/calendario"
+                className="px-7 py-3.5 rounded-lg text-sm font-semibold tracking-wide transition-all hover:bg-white/10"
+                style={{ color: "#ccc", border: "1px solid rgba(255,255,255,0.15)" }}>
+                Calendário
+              </Link>
+            </div>
           </div>
 
-          <h1 className="font-display leading-[0.9] tracking-wider mb-5" style={{ fontSize: "clamp(56px, 8vw, 88px)" }}>
-            <span className="text-white">OLIVEIRENSE</span><br />
-            <span style={{ color: "#C8102E" }}>BASQUETEBOL</span>
-          </h1>
-
-          <p className="text-gray-400 text-lg max-w-md mb-8 leading-relaxed">
-            Uma nova era começa agora.{" "}
-            <span className="font-semibold" style={{ color: "#6B8FCC" }}>Força Oliveirense!</span>
-          </p>
-
-          <div className="flex gap-3 flex-wrap">
-            <Link href="/plantel"
-              className="px-8 py-3.5 rounded-lg text-sm font-bold text-white tracking-wide transition-all hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #1C3A6B, #2a5199)" }}>
-              Ver plantel
-            </Link>
-            <Link href="/noticias"
-              className="px-8 py-3.5 rounded-lg text-sm font-semibold text-gray-300 border transition-all hover:text-white hover:bg-white/5"
-              style={{ borderColor: "#2E2E36" }}>
-              Últimas notícias
-            </Link>
+          {/* Direita — Logo grande */}
+          <div className="relative z-10 flex-shrink-0 flex items-center justify-center"
+            style={{ width: "clamp(220px, 35vw, 420px)", height: "clamp(220px, 35vw, 420px)" }}>
+            {/* Glow atrás do logo */}
+            <div className="absolute inset-0 rounded-full opacity-30"
+              style={{ background: "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)" }} />
+            <Image
+              src="/logo.png"
+              alt="U.D. Oliveirense"
+              fill
+              className="object-contain drop-shadow-2xl"
+              sizes="(max-width: 768px) 220px, 420px"
+              priority
+            />
           </div>
         </div>
+
+        {/* Linha decorativa em baixo */}
+        <div className="absolute bottom-0 left-0 right-0 h-px"
+          style={{ background: "linear-gradient(90deg, transparent, #C8102E 30%, #1C3A6B 70%, transparent)" }} />
       </section>
 
-      {/* DIVIDER */}
-      <div className="h-px" style={{ background: "linear-gradient(90deg, transparent, #2E2E36 20%, #2E2E36 80%, transparent)" }} />
-
-      {/* NOTÍCIAS */}
+      {/* ═══ NOTÍCIAS ═══ */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-xl font-extrabold tracking-wider flex items-center gap-3">
@@ -87,7 +116,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* PLANTEL */}
+      {/* ═══ PLANTEL ═══ */}
       <section className="py-16 px-6" style={{ background: "#1C1C20" }}>
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
@@ -108,9 +137,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ═══ CTA ═══ */}
       <section className="relative overflow-hidden py-20 px-6" style={{ background: "#141416" }}>
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(28,58,107,0.12) 0%, transparent 70%)" }} />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(200,16,46,0.08) 0%, transparent 70%)" }} />
         <div className="relative max-w-7xl mx-auto text-center">
           <h2 className="font-display text-4xl tracking-wider text-white mb-3">
             JUNTA-TE À <span style={{ color: "#C8102E" }}>FAMÍLIA</span>
@@ -119,8 +148,8 @@ export default async function Home() {
             Inscrições abertas para todas as camadas. Vem fazer parte do projeto.
           </p>
           <Link href="/clube"
-            className="inline-block px-10 py-4 rounded-lg text-sm font-bold text-white tracking-wide transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #1C3A6B, #2a5199)" }}>
+            className="inline-block px-10 py-4 rounded-lg text-sm font-bold text-white tracking-wide transition-all hover:brightness-110"
+            style={{ background: "linear-gradient(135deg, #C8102E, #8B0A1F)" }}>
             Saber mais
           </Link>
         </div>
