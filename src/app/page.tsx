@@ -62,14 +62,13 @@ export default async function Home() {
 
             <h1 className="font-display font-extrabold text-white leading-[1.0] mb-6"
               style={{ fontSize: "clamp(40px, 6vw, 72px)", letterSpacing: "-0.02em" }}>
-              PELO CORACAO<br />DE{" "}
-              <span className="text-oliv-red">OLIVEIRA</span><br />
-              DE AZEMEIS.
-            </h1>
+              OLIVEIRENSE<br />DE{" "}
+              <span className="text-oliv-red">BASQUETEBOL</span><br />
+               </h1>
 
             <p className="mb-8 leading-relaxed" style={{ color: "#8a9099", fontSize: 16, maxWidth: 420 }}>
               Junta-te ao legado. Vive a adrenalina de cada jogada,
-              o rugido da multidao e a perseguicao da vitoria.
+              o rugido da multidão!
             </p>
 
             <div className="flex gap-3 flex-wrap">
@@ -186,7 +185,7 @@ export default async function Home() {
       <section className="max-w-7xl mx-auto px-6 pb-20">
         <div className="flex justify-between items-end mb-8">
           <div>
-            <div className="text-[11px] font-bold text-oliv-red uppercase tracking-[3px] mb-2">O DIARIO DO CAMPO</div>
+            <div className="text-[11px] font-bold text-oliv-red uppercase tracking-[3px] mb-2"></div>
             <h2 className="font-display font-extrabold text-oliv-text" style={{ fontSize: 32, letterSpacing: "-0.02em" }}>
               ULTIMAS NOTICIAS
             </h2>
