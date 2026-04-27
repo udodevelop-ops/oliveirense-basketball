@@ -22,7 +22,7 @@ export function Navbar() {
     supabase.from("teams").select("*").order("display_order").then(({ data }) => {
       if (!data) return;
       setTeams(data.filter((t) => t.is_current));
-      const seasons = [...new Set(data.filter((t) => !t.is_current).map((t) => t.season))].sort().reverse();
+      const seasons = Array.from(new Set(data.filter((t) => !t.is_current).map((t) => t.season))).sort().reverse();
       setArchiveSeasons(seasons);
     });
   }, []);
