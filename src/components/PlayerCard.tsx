@@ -61,7 +61,7 @@ export function PlayerCard({ player }: { player: Player }) {
         </div>
 
         <div className="mt-3 text-[12px] font-bold text-oliv-navy group-hover:text-oliv-red transition-colors flex items-center gap-1">
-          VIEW PROFILE <span className="text-[10px]">-&gt;</span>
+          VER PERFIL <span className="text-[10px]">-&gt;</span>
         </div>
       </div>
     </Link>
