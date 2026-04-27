@@ -62,7 +62,7 @@ export default async function Home() {
 
             <h1 className="font-display font-extrabold text-white leading-[1.0] mb-6"
               style={{ fontSize: "clamp(40px, 6vw, 72px)", letterSpacing: "-0.02em" }}>
-              OLIVEIRENSE<br />DE{" "}
+              OLIVEIRENSE<br />{" "}
               <span className="text-oliv-red">BASQUETEBOL</span><br />
                </h1>
 
