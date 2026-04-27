@@ -59,17 +59,21 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
 
         {/* Brand — logo maior */}
-        <Link href="/" onClick={close} className="flex items-center gap-3.5 group">
-          <div className="relative w-[52px] h-[52px]">
+        <Link href="/" onClick={close} className="flex items-center gap-3 group">
+          <div className="relative" style={{ width: 56, height: 56 }}>
             <Image
               src="/logo.png"
               alt="U.D. Oliveirense"
               fill
               className="object-contain"
-              style={{ mixBlendMode: "screen", filter: "brightness(1.05)" }}
-              sizes="52px"
+              sizes="56px"
             />
           </div>
+          <div>
+            <div className="text-[15px] font-extrabold tracking-[3px] leading-tight text-white">OLIVEIRENSE</div>
+            <div className="text-[9px] font-bold tracking-[3px]" style={{ color: "#C8102E" }}>BASQUETEBOL</div>
+          </div>
+        </Link>
           <div>
             <div className="text-[16px] font-extrabold tracking-[3px] leading-tight text-white">OLIVEIRENSE</div>
             <div className="text-[9px] font-bold tracking-[3px] text-oliv-red">BASQUETEBOL</div>
