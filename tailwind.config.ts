@@ -10,10 +10,14 @@ const config: Config = {
           "red-dark": "#a00d24",
           navy: "#1C3A6B",
           "navy-light": "#2a5199",
-          dark: "#0D0D0D",
-          card: "#111118",
-          border: "#1E1E2A",
-          surface: "#08080F",
+          // New NBA-style grey palette
+          dark: "#141416",       // main background
+          darker: "#0F0F11",     // deeper sections
+          card: "#1C1C20",       // card background
+          surface: "#222228",    // slightly lighter surface
+          hover: "#2A2A30",      // hover state
+          border: "#2E2E36",     // borders
+          muted: "#3A3A44",      // muted elements
         },
       },
       fontFamily: {

@@ -5,27 +5,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800;900&display=swap");
 
 ::selection {
-  background: #c8102e;
+  background: #C8102E;
   color: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: "DM Sans", sans-serif;
-  background: #0d0d0d;
-  color: #fff;
+  background: #141416;
+  color: #F0F0F2;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Scrollbar personalizada */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0d0d0d;
-}
-::-webkit-scrollbar-thumb {
-  background: #1e1e2a;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #1c3a6b;
-}
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #141416; }
+::-webkit-scrollbar-thumb { background: #2E2E36; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #1C3A6B; }
