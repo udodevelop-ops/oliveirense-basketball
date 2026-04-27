@@ -65,7 +65,8 @@ export function Navbar() {
               src="/logo.png"
               alt="U.D. Oliveirense"
               fill
-              className="object-contain drop-shadow-lg"
+              className="object-contain"
+              style={{ mixBlendMode: "screen", filter: "brightness(1.05)" }}
               sizes="52px"
             />
           </div>

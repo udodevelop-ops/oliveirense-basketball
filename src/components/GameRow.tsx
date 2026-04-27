@@ -42,6 +42,7 @@ function TeamLogo({ name, overrideUrl, size = 48 }: { name: string; overrideUrl?
           src={src}
           alt={name}
           className="w-full h-full object-contain p-1"
+          style={{ mixBlendMode: "screen" }}
           onError={() => setErrored(true)}
         />
       ) : (

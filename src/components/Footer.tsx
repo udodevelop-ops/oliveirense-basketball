@@ -7,7 +7,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
           <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="UDO" width={40} height={40} className="object-contain" />
+            <Image src="/logo.png" alt="UDO" width={40} height={40} className="object-contain" style={{ mixBlendMode: "screen" }} />
             <div>
               <div className="font-bold tracking-[2px] text-[13px] text-white">OLIVEIRENSE BASQUETEBOL</div>
               <div className="text-[11px] mt-0.5" style={{ color: "#555560" }}>U.D. Oliveirense — Secção de Basquetebol</div>
