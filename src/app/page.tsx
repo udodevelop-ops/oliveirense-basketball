@@ -11,185 +11,262 @@ export default async function Home() {
 
   const { data: news } = await supabase
     .from("news").select("*").eq("published", true)
-    .order("date", { ascending: false }).limit(3);
+    .order("date", { ascending: false }).limit(4);
 
   const { data: players } = await supabase
     .from("players").select("*").eq("active", true)
-    .order("display_order").limit(3);
+    .order("display_order").limit(4);
 
   const { data: settings } = await supabase.from("club_settings").select("*");
   const get = (key: string) => settings?.find((s) => s.key === key)?.value ?? "";
 
   return (
-    <div>
+    <div style={{ background: "#f8f9fa" }}>
+
       {/* HERO */}
-      <section className="relative overflow-hidden" style={{ minHeight: 560 }}>
-
-        {/* Fundo gradiente azul marinho */}
+      <section className="relative overflow-hidden" style={{ background: "#191c1d", minHeight: 560 }}>
+        {/* Background image overlay */}
+        <div className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600&q=80)" }} />
         <div className="absolute inset-0"
-          style={{
-            background: "linear-gradient(125deg, #0a0e1a 0%, #0f1628 30%, #1a2540 55%, #0d1420 80%, #080c14 100%)"
-          }} />
+          style={{ background: "linear-gradient(90deg, rgba(25,28,29,0.98) 40%, rgba(25,28,29,0.7) 70%, rgba(53,87,188,0.4) 100%)" }} />
 
-        {/* Linhas decorativas subtis */}
-        <div className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage: "repeating-linear-gradient(135deg, #4A6FA5 0px, #4A6FA5 1px, transparent 1px, transparent 60px)"
-          }} />
+        {/* Red accent line top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-oliv-red" />
 
-        {/* Glow azul no centro-direita */}
-        <div className="absolute"
-          style={{
-            right: "5%", top: "50%", transform: "translateY(-50%)",
-            width: 500, height: 500, borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(28,58,107,0.5) 0%, rgba(28,58,107,0.15) 40%, transparent 70%)",
-            filter: "blur(40px)"
-          }} />
-
-        {/* Glow vermelho subtil na esquerda */}
-        <div className="absolute"
-          style={{
-            left: "-5%", bottom: "0%",
-            width: 400, height: 300,
-            background: "radial-gradient(circle, rgba(200,16,46,0.15) 0%, transparent 70%)",
-            filter: "blur(60px)"
-          }} />
-
-        {/* Conteudo */}
         <div className="relative max-w-7xl mx-auto px-6 flex items-center justify-between" style={{ minHeight: 560 }}>
-
-          {/* Esquerda - Texto */}
-          <div className="flex-1 py-20 pr-12 z-10 max-w-xl">
-
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-[2px] uppercase"
-              style={{ background: "rgba(200,16,46,0.15)", color: "#ff8096", border: "1px solid rgba(200,16,46,0.35)" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-oliv-red inline-block" />
-              Temporada {get("season") || "2025/26"}
+          {/* Left - Text */}
+          <div className="flex-1 py-20 pr-8 max-w-2xl">
+            <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-[2px] uppercase"
+              style={{ background: "rgba(189,0,27,0.2)", color: "#ff6b7a", border: "1px solid rgba(189,0,27,0.4)" }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-oliv-red inline-block pulse-red" />
+              TEMPORADA {get("season") || "2025/26"}
             </div>
 
-            <h1 className="font-display text-white leading-[0.92] mb-6 tracking-wide"
-              style={{ fontSize: "clamp(54px, 7vw, 82px)" }}>
-              OLIVEIRENSE<br />
-              <span style={{
-                background: "linear-gradient(135deg, #C8102E 0%, #ff4466 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent"
-              }}>
-                BASQUETEBOL
-              </span>
+            <h1 className="font-display font-extrabold text-white leading-[1.0] mb-6"
+              style={{ fontSize: "clamp(40px, 6vw, 72px)", letterSpacing: "-0.02em" }}>
+              FOR THE HEART<br />OF{" "}
+              <span className="text-oliv-red">OLIVEIRA</span><br />
+              DE AZEMEIS.
             </h1>
 
-            <p style={{ color: "#8A9BB5", fontSize: 16, lineHeight: 1.7, marginBottom: 32, maxWidth: 400 }}>
-              Paixao, dedicacao e espirito de equipa em cada jogo.
-              Forca Oliveirense!
+            <p className="mb-8 leading-relaxed" style={{ color: "#8a9099", fontSize: 16, maxWidth: 420 }}>
+              Join the legacy. Experience the adrenaline of every play,
+              the roar of the crowd, and the pursuit of victory.
             </p>
 
             <div className="flex gap-3 flex-wrap">
               <Link href="/plantel"
-                className="px-7 py-3.5 rounded-lg text-sm font-bold text-white tracking-wide transition-all hover:brightness-110 hover:-translate-y-0.5"
-                style={{ background: "linear-gradient(135deg, #C8102E 0%, #8B0A1F 100%)", boxShadow: "0 4px 20px rgba(200,16,46,0.35)" }}>
-                Ver Plantel
+                className="px-6 py-3 rounded text-sm font-bold text-white tracking-wide transition-all hover:brightness-110"
+                style={{ background: "#bd001b" }}>
+                VER PLANTEL
               </Link>
-              <Link href="/calendario"
-                className="px-7 py-3.5 rounded-lg text-sm font-semibold tracking-wide transition-all hover:-translate-y-0.5"
-                style={{ color: "#A0B8D8", border: "1px solid rgba(74,111,165,0.4)", background: "rgba(28,58,107,0.2)" }}>
-                Calendario
+              <Link href="/clube"
+                className="px-6 py-3 rounded text-sm font-bold tracking-wide transition-all hover:bg-white/10"
+                style={{ color: "#ffffff", border: "2px solid rgba(255,255,255,0.3)" }}>
+                SOBRE O CLUBE
               </Link>
-            </div>
-
-            {/* Stats */}
-            <div className="flex gap-8 mt-12 pt-8" style={{ borderTop: "1px solid rgba(74,111,165,0.2)" }}>
-              {[["22", "Vitorias"], ["8", "Derrotas"], ["89.3", "Pts/Jogo"]].map(([v, l]) => (
-                <div key={l}>
-                  <div className="font-display text-white text-3xl tracking-wider">{v}</div>
-                  <div className="text-[11px] uppercase tracking-[1.5px] mt-1" style={{ color: "#556688" }}>{l}</div>
-                </div>
-              ))}
             </div>
           </div>
 
-          {/* Direita - Logo */}
-          <div className="relative flex-shrink-0 flex items-center justify-center z-10"
-            style={{ width: "clamp(260px, 38vw, 460px)", height: "clamp(260px, 38vw, 460px)" }}>
-            {/* Anel decorativo */}
-            <div className="absolute inset-8 rounded-full opacity-20"
-              style={{ border: "1px solid #4A6FA5" }} />
-            <div className="absolute inset-16 rounded-full opacity-10"
-              style={{ border: "1px solid #4A6FA5" }} />
-            {/* Logo */}
+          {/* Right - Logo large */}
+          <div className="relative flex-shrink-0 hidden lg:flex items-center justify-center"
+            style={{ width: 380, height: 380 }}>
+            <div className="absolute inset-0 rounded-full opacity-10"
+              style={{ background: "radial-gradient(circle, #3557bc 0%, transparent 70%)" }} />
             <Image
               src="/logo.png"
               alt="U.D. Oliveirense"
               fill
               className="object-contain"
-              style={{ filter: "drop-shadow(0 0 40px rgba(28,58,107,0.6)) drop-shadow(0 0 80px rgba(28,58,107,0.3))" }}
-              sizes="(max-width: 768px) 260px, 460px"
+              style={{ filter: "drop-shadow(0 0 60px rgba(53,87,188,0.4))" }}
+              sizes="380px"
               priority
             />
           </div>
         </div>
 
-        {/* Linha em baixo */}
-        <div className="absolute bottom-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent, #1C3A6B 30%, #C8102E 50%, #1C3A6B 70%, transparent)" }} />
+        {/* Bottom slant */}
+        <div className="absolute bottom-0 left-0 right-0 h-8"
+          style={{ background: "#f8f9fa", clipPath: "polygon(0 100%, 100% 0, 100% 100%)" }} />
+      </section>
+
+      {/* PROXIMO JOGO + CLASSIFICACAO */}
+      <section className="max-w-7xl mx-auto px-6 -mt-1 pb-16 pt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+          {/* Proximo jogo */}
+          <div className="lg:col-span-2 bg-white rounded-lg border border-oliv-surface-high p-6"
+            style={{ boxShadow: "0 2px 12px rgba(53,87,188,0.06)" }}>
+            <div className="text-[11px] font-bold text-oliv-navy uppercase tracking-[2px] mb-4">Proximo Jogo</div>
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <div className="text-[13px] font-semibold text-gray-500 mb-1">Liga Betclic | Jornada 22</div>
+                <div className="font-display font-bold text-oliv-text" style={{ fontSize: 28, letterSpacing: "-0.02em" }}>
+                  NOV 14, 21:00
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="text-center">
+                  <div className="w-12 h-12 rounded-full bg-oliv-surface-low flex items-center justify-center overflow-hidden mx-auto mb-1">
+                    <Image src="/logo.png" alt="UDO" width={40} height={40} className="object-contain" />
+                  </div>
+                  <div className="text-[11px] font-bold text-oliv-red">UDO</div>
+                </div>
+                <div className="text-center px-4">
+                  <div className="font-display text-2xl font-black text-gray-300">VS</div>
+                  <div className="text-[10px] text-gray-400 uppercase tracking-wider mt-1">Liga Betclic</div>
+                </div>
+                <div className="text-center">
+                  <div className="w-12 h-12 rounded-full bg-oliv-surface-low flex items-center justify-center mx-auto mb-1">
+                    <span className="text-[11px] font-bold text-gray-500">SLB</span>
+                  </div>
+                  <div className="text-[11px] font-bold text-gray-600">SL Benfica</div>
+                </div>
+              </div>
+              <Link href="/calendario"
+                className="px-5 py-2.5 rounded text-sm font-bold text-white whitespace-nowrap"
+                style={{ background: "#bd001b" }}>
+                VER JOGO
+              </Link>
+            </div>
+          </div>
+
+          {/* Classificacao */}
+          <div className="bg-oliv-navy rounded-lg p-6" style={{ boxShadow: "0 2px 12px rgba(53,87,188,0.2)" }}>
+            <div className="text-[11px] font-bold text-oliv-navy-light uppercase tracking-[2px] mb-4">Classificacao</div>
+            {[
+              { pos: 1, name: "FC Porto", pts: 24 },
+              { pos: 2, name: "UD Oliveirense", pts: 22, highlight: true },
+              { pos: 3, name: "SL Benfica", pts: 21 },
+              { pos: 4, name: "Sporting CP", pts: 20 },
+            ].map((t) => (
+              <div key={t.pos} className={`flex items-center justify-between py-2 ${t.highlight ? "text-white" : "text-white/60"}`}>
+                <div className="flex items-center gap-3">
+                  <span className="text-[12px] font-bold w-4">{t.pos}</span>
+                  <span className={`text-[13px] font-semibold ${t.highlight ? "text-white" : ""}`}>{t.name}</span>
+                </div>
+                <span className={`text-[13px] font-bold px-2.5 py-0.5 rounded ${t.highlight ? "bg-oliv-red text-white" : ""}`}>{t.pts} PTS</span>
+              </div>
+            ))}
+            <Link href="/calendario" className="block mt-4 text-[12px] font-semibold text-oliv-navy-light hover:text-white transition-colors">
+              VER TABELA COMPLETA
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* NOTICIAS */}
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-xl font-extrabold tracking-wider flex items-center gap-3">
-            <span className="inline-block w-1 h-6 rounded-sm" style={{ background: "#C8102E" }} />
-            <span className="text-white">Ultimas Noticias</span>
-          </h2>
-          <Link href="/noticias" className="text-sm font-semibold hover:text-white transition-colors" style={{ color: "#6B8FCC" }}>
-            Ver todas
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {news?.map((n) => <NewsCard key={n.id} news={n} />)}
-          {(!news || news.length === 0) && (
-            <p className="text-gray-600 col-span-3 py-8 text-center">Ainda nao ha noticias publicadas.</p>
-          )}
-        </div>
-      </section>
-
-      {/* PLANTEL */}
-      <section className="py-16 px-6" style={{ background: "#1C1C20" }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-xl font-extrabold tracking-wider flex items-center gap-3">
-              <span className="inline-block w-1 h-6 rounded-sm" style={{ background: "#C8102E" }} />
-              <span className="text-white">Destaques do Plantel</span>
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <div className="flex justify-between items-end mb-8">
+          <div>
+            <div className="text-[11px] font-bold text-oliv-red uppercase tracking-[3px] mb-2">THE DAILY COURT</div>
+            <h2 className="font-display font-extrabold text-oliv-text" style={{ fontSize: 32, letterSpacing: "-0.02em" }}>
+              ULTIMAS NOTICIAS
             </h2>
-            <Link href="/plantel" className="text-sm font-semibold hover:text-white transition-colors" style={{ color: "#6B8FCC" }}>
-              Ver plantel
-            </Link>
+            <div className="h-0.5 w-12 bg-oliv-red mt-2" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {players?.map((p) => <PlayerCard key={p.id} player={p} />)}
-            {(!players || players.length === 0) && (
-              <p className="text-gray-600 col-span-3 py-8 text-center">Ainda nao ha jogadores registados.</p>
-            )}
+          <Link href="/noticias" className="text-[13px] font-bold text-oliv-red hover:text-oliv-red-dark transition-colors tracking-wide">
+            VER TODAS AS NOTICIAS
+          </Link>
+        </div>
+
+        {/* Featured + side */}
+        {news && news.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            {/* Featured large */}
+            <Link href={`/noticias/${news[0].id}`} className="lg:col-span-2 group relative rounded-lg overflow-hidden block"
+              style={{ minHeight: 360 }}>
+              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={{ backgroundImage: news[0].image_url ? `url(${news[0].image_url})` : "linear-gradient(135deg, #3557bc, #bd001b)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(25,28,29,0.95) 0%, rgba(25,28,29,0.3) 60%, transparent 100%)" }} />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <span className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-3"
+                  style={{ background: "#bd001b", color: "#fff" }}>
+                  {news[0].category}
+                </span>
+                <h3 className="font-display font-bold text-white leading-tight text-2xl">{news[0].title}</h3>
+                <p className="text-gray-300 text-sm mt-2 line-clamp-2">{news[0].subtitle}</p>
+              </div>
+            </Link>
+
+            {/* Side news */}
+            <div className="flex flex-col gap-4">
+              {news.slice(1, 4).map((n) => (
+                <Link key={n.id} href={`/noticias/${n.id}`}
+                  className="flex gap-3 bg-white rounded-lg p-3 border border-oliv-surface-high hover:border-oliv-navy transition-all group"
+                  style={{ boxShadow: "0 1px 4px rgba(53,87,188,0.04)" }}>
+                  <div className="w-20 h-16 rounded flex-shrink-0 overflow-hidden"
+                    style={{ background: n.image_url ? undefined : "linear-gradient(135deg, #3557bc, #bd001b)" }}>
+                    {n.image_url && <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${n.image_url})` }} />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-[10px] font-bold text-oliv-navy uppercase tracking-wider">{n.category}</span>
+                    <h4 className="text-[13px] font-bold text-oliv-text leading-snug mt-0.5 group-hover:text-oliv-red transition-colors line-clamp-2">{n.title}</h4>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* RESULTADOS */}
+      <section className="py-20 px-6" style={{ background: "#ffffff" }}>
+        <div className="max-w-7xl mx-auto">
+          <h2 className="font-display font-extrabold text-oliv-text mb-8" style={{ fontSize: 32, letterSpacing: "-0.02em" }}>
+            ULTIMOS RESULTADOS
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { date: "5 ABR", comp: "Liga Betclic", home: "Oliveirense", hs: 89, as: 72, away: "Vitoria SC", win: true },
+              { date: "29 MAR", comp: "Liga Betclic", home: "Lusitania", hs: 68, as: 75, away: "Oliveirense", win: true },
+              { date: "22 MAR", comp: "Liga Betclic", home: "Oliveirense", hs: 82, as: 71, away: "Academica", win: true },
+              { date: "8 MAR", comp: "Liga Betclic", home: "Imortal", hs: 61, as: 83, away: "Oliveirense", win: true },
+            ].map((r, i) => (
+              <div key={i} className="bg-oliv-surface-low rounded-lg p-4 border border-oliv-surface-high">
+                <div className="text-[10px] font-bold text-oliv-navy uppercase tracking-wider mb-1">{r.date} - {r.comp}</div>
+                <div className="flex items-center justify-between my-3">
+                  <div className="text-[13px] font-bold text-oliv-text">{r.home}</div>
+                  <div className="font-display font-black text-xl text-oliv-text">
+                    <span className={r.home === "Oliveirense" && r.win ? "text-oliv-red" : ""}>{r.hs}</span>
+                    <span className="text-gray-300 mx-1">-</span>
+                    <span className={r.away === "Oliveirense" && r.win ? "text-oliv-red" : ""}>{r.as}</span>
+                  </div>
+                  <div className="text-[13px] font-bold text-oliv-text text-right">{r.away}</div>
+                </div>
+                <div className={`text-[10px] font-bold uppercase tracking-wider ${r.win ? "text-green-600" : "text-oliv-red"}`}>
+                  {r.win ? "VITORIA" : "DERROTA"}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden py-20 px-6" style={{ background: "#0f1628" }}>
-        <div className="absolute inset-0"
-          style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(28,58,107,0.2) 0%, transparent 70%)" }} />
-        <div className="relative max-w-7xl mx-auto text-center">
-          <h2 className="font-display text-4xl tracking-wider text-white mb-3">
-            JUNTA-TE A <span style={{ color: "#C8102E" }}>FAMILIA</span>
-          </h2>
-          <p className="text-base mb-8 max-w-lg mx-auto" style={{ color: "#8A9BB5" }}>
-            Inscricoes abertas para todas as camadas. Vem fazer parte do projeto.
-          </p>
-          <Link href="/clube"
-            className="inline-block px-10 py-4 rounded-lg text-sm font-bold text-white tracking-wide transition-all hover:brightness-110"
-            style={{ background: "linear-gradient(135deg, #1C3A6B, #2a5199)", boxShadow: "0 4px 20px rgba(28,58,107,0.4)" }}>
-            Saber mais
-          </Link>
+      {/* NEWSLETTER CTA */}
+      <section className="py-20 px-6" style={{ background: "#2e3132" }}>
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div>
+            <h2 className="font-display font-extrabold text-white leading-tight" style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-0.02em" }}>
+              NEVER MISS<br />A BEAT.
+            </h2>
+            <p className="text-gray-400 text-sm mt-3 max-w-md leading-relaxed">
+              Subscreve a nossa newsletter para entrevistas exclusivas,
+              pre-venda de bilhetes e noticias direto na tua caixa de correio.
+            </p>
+          </div>
+          <div className="flex gap-3 w-full lg:w-auto">
+            <input
+              type="email"
+              placeholder="O teu email"
+              className="flex-1 lg:w-72 px-4 py-3 rounded text-sm bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-oliv-red transition-colors"
+            />
+            <button className="px-6 py-3 rounded text-sm font-bold text-white whitespace-nowrap transition-all hover:brightness-110"
+              style={{ background: "#bd001b" }}>
+              SUBSCREVER
+            </button>
+          </div>
         </div>
       </section>
     </div>

@@ -6,23 +6,41 @@ const config: Config = {
     extend: {
       colors: {
         oliv: {
-          red: "#C8102E",
-          "red-dark": "#a00d24",
-          navy: "#1C3A6B",
-          "navy-light": "#2a5199",
-          // New NBA-style grey palette
-          dark: "#141416",       // main background
-          darker: "#0F0F11",     // deeper sections
-          card: "#1C1C20",       // card background
-          surface: "#222228",    // slightly lighter surface
-          hover: "#2A2A30",      // hover state
-          border: "#2E2E36",     // borders
-          muted: "#3A3A44",      // muted elements
+          // Primary - Victory Red
+          red: "#bd001b",
+          "red-vivid": "#e61d2b",
+          "red-dark": "#930012",
+          // Secondary - Union Blue
+          navy: "#3557bc",
+          "navy-dark": "#002a82",
+          "navy-light": "#7796fe",
+          // Tertiary - Court Navy
+          tertiary: "#485b90",
+          // Surfaces (light mode)
+          bg: "#f8f9fa",
+          surface: "#ffffff",
+          "surface-low": "#f3f4f5",
+          "surface-mid": "#edeeef",
+          "surface-high": "#e7e8e9",
+          // Text
+          text: "#191c1d",
+          "text-muted": "#5d3f3d",
+          // Borders
+          border: "#e7bdb9",
+          outline: "#926e6b",
         },
       },
       fontFamily: {
-        display: ['"Bebas Neue"', "sans-serif"],
-        sans: ['"DM Sans"', "sans-serif"],
+        display: ['"Lexend"', "sans-serif"],
+        sans: ['"Inter"', "sans-serif"],
+      },
+      borderRadius: {
+        sm: "0.125rem",
+        DEFAULT: "0.25rem",
+        md: "0.375rem",
+        lg: "0.5rem",
+        xl: "0.75rem",
+        full: "9999px",
       },
     },
   },

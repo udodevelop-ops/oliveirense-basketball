@@ -2,41 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+* { box-sizing: border-box; }
 
 ::selection {
-  background: #C8102E;
+  background: #bd001b;
   color: #fff;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: "DM Sans", sans-serif;
-  background: #141416;
-  color: #F0F0F2;
+  font-family: "Inter", sans-serif;
+  background: #f8f9fa;
+  color: #191c1d;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #141416; }
-::-webkit-scrollbar-thumb { background: #2E2E36; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #1C3A6B; }
+::-webkit-scrollbar-track { background: #f3f4f5; }
+::-webkit-scrollbar-thumb { background: #e7bdb9; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #bd001b; }
 
-/* Remove white background from logos */
-.logo-img {
-  mix-blend-mode: screen;
-  filter: brightness(1.1);
+/* Pulse animation for live badge */
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
+.pulse-red { animation: pulse-red 1.5s ease-in-out infinite; }
 
-.logo-img-dark {
-  mix-blend-mode: multiply;
+/* Slant clip for hero */
+.slant-right {
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
-
-/* Team logos in circles - make white bg transparent */
-.team-logo-img {
-  mix-blend-mode: screen;
+.slant-left {
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
 }
