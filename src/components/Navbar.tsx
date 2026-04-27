@@ -58,7 +58,6 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-oliv-border" style={{ background: "rgba(20,20,22,0.97)", backdropFilter: "blur(20px)" }}>
       <div className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
 
-        {/* Brand — logo maior */}
         <Link href="/" onClick={close} className="flex items-center gap-3 group">
           <div className="relative" style={{ width: 56, height: 56 }}>
             <Image
@@ -74,17 +73,10 @@ export function Navbar() {
             <div className="text-[9px] font-bold tracking-[3px]" style={{ color: "#C8102E" }}>BASQUETEBOL</div>
           </div>
         </Link>
-          <div>
-            <div className="text-[16px] font-extrabold tracking-[3px] leading-tight text-white">OLIVEIRENSE</div>
-            <div className="text-[9px] font-bold tracking-[3px] text-oliv-red">BASQUETEBOL</div>
-          </div>
-        </Link>
 
-        {/* Nav links */}
         <div className="flex items-center gap-0.5">
-          <Link href="/" onClick={close} className={linkCls("/", true)}>Início</Link>
+          <Link href="/" onClick={close} className={linkCls("/", true)}>Inicio</Link>
 
-          {/* CLUBE */}
           <div ref={clubeRef} className="relative">
             <button onClick={() => toggle("clube")} className={dropCls("clube", "/clube")}>
               Clube <ChevronDown size={13} className={`transition-transform duration-200 ${openMenu === "clube" ? "rotate-180" : ""}`} />
@@ -92,12 +84,11 @@ export function Navbar() {
             {openMenu === "clube" && (
               <div className="absolute top-full left-0 mt-2 border border-oliv-border rounded-xl shadow-2xl overflow-hidden z-50 min-w-[200px]" style={{ background: "#1C1C20" }}>
                 <Link href="/clube" onClick={close} className={dropItem(pathname === "/clube")}>O Clube</Link>
-                <Link href="/clube/palmares" onClick={close} className={dropItem(pathname.startsWith("/clube/palmares"))}>🏆 Palmarés</Link>
+                <Link href="/clube/palmares" onClick={close} className={dropItem(pathname.startsWith("/clube/palmares"))}>Palmares</Link>
               </div>
             )}
           </div>
 
-          {/* PLANTEL */}
           <div ref={plantelRef} className="relative">
             <button onClick={() => toggle("plantel")} className={dropCls("plantel", "/plantel")}>
               Plantel <ChevronDown size={13} className={`transition-transform duration-200 ${openMenu === "plantel" ? "rotate-180" : ""}`} />
@@ -105,7 +96,7 @@ export function Navbar() {
             {openMenu === "plantel" && (
               <div className="absolute top-full left-0 mt-2 border border-oliv-border rounded-xl shadow-2xl overflow-hidden z-50 min-w-[210px]" style={{ background: "#1C1C20" }}>
                 <div className="px-4 pt-3 pb-1.5">
-                  <span className="text-[10px] font-bold text-oliv-red uppercase tracking-[2px]">Época 2025/26</span>
+                  <span className="text-[10px] font-bold text-oliv-red uppercase tracking-[2px]">Epoca 2025/26</span>
                 </div>
                 {teams.length === 0 && <p className="px-4 py-3 text-gray-500 text-[12px]">A configurar no admin...</p>}
                 {teams.map((t) => (
@@ -134,8 +125,8 @@ export function Navbar() {
             )}
           </div>
 
-          <Link href="/calendario" onClick={close} className={linkCls("/calendario")}>Calendário</Link>
-          <Link href="/noticias" onClick={close} className={linkCls("/noticias")}>Notícias</Link>
+          <Link href="/calendario" onClick={close} className={linkCls("/calendario")}>Calendario</Link>
+          <Link href="/noticias" onClick={close} className={linkCls("/noticias")}>Noticias</Link>
 
           <Link href="/admin" className="ml-3 p-2 rounded-lg border border-oliv-border text-gray-500 hover:text-white hover:border-oliv-navy transition-all">
             <Lock size={15} />
